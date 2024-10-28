@@ -1,0 +1,29 @@
+# Python dev
+ipdb
+ipython
+ruff
+uv
+
+# Django dev
+django-browser-reload
+django-debug-toolbar
+
+# Core
+django~=4.2.0
+pillow
+psycopg2-binary
+
+# Core extras
+django-compressor
+django-configurations
+whitenoise
+
+# Testing
+model_bakery
+pytest
+pytest-cov
+pytest-django
+
+# Deployment
+gunicorn
+sentry-sdk

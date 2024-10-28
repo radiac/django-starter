@@ -1,0 +1,50 @@
+[project]
+name = "starter-site"
+version = "4.1.0"
+
+[tool.pytest.ini_options]
+addopts = "--cov=starter --cov-report=term --cov-report=html"
+testpaths = [
+    "tests",
+]
+DJANGO_CONFIGURATION = ""
+
+[tool.coverage.run]
+source = ["starter"]
+
+[tool.black]
+line-length = 88
+target-version = ["py39"]
+include = "\\.pyi?$"
+
+[tool.mypy]
+follow_imports = "skip"
+ignore_missing_imports = true
+
+[tool.ruff]
+line-length = 88
+ignore = [
+    "E501",  # line length
+]
+exclude = [
+    ".tox",
+    ".git",
+    "*/static/CACHE/*",
+    "docs",
+    "node_modules",
+    "static_root",
+]
+
+[tool.ruff.lint]
+select = ["E", "F", "I"]
+
+[tool.ruff.lint.isort]
+# A list of modules to consider first-party
+known-first-party = []
+section-order = ["future", "standard-library", "django", "third-party", "first-party", "local-folder"]
+
+[tool.ruff.lint.isort.sections]
+"django" = ["django"]
+
+[tool.djlint]
+profile="django"

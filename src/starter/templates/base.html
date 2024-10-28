@@ -1,0 +1,30 @@
+{% load static compress %}<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>{% block title %}Starter{% endblock %}</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  {% compress css %}
+  <link rel="stylesheet" href="{% static "reset.css" %}">
+  <link rel="stylesheet" href="{% static "site.css" %}">
+  {% endcompress %}
+  {% block extra_css %}
+  {% endblock %}
+
+  {% compress js %}
+  <script src="{% static "site.js" %}" async></script>
+  {% endcompress %}
+  {% block extra_js %}
+  {% endblock %}
+
+  {% block extra_head %}
+  {% endblock %}
+</head>
+<body>
+
+{% block content %}
+{% endblock %}
+
+</body>
+</html>
