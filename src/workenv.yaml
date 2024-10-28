@@ -1,0 +1,17 @@
+env:
+  COMPOSE_FILE: docker-compose.dev.yml
+source:
+- .venv/bin/activate
+commands:
+  postgres:
+    run:
+    - docker compose up db
+  django:
+    run:
+    - docker compose up django
+  django-connect:
+    run:
+    - docker compose exec django /bin/bash
+  django-shell:
+    run:
+    - docker compose run --service-ports --entrypoint=/bin/bash django

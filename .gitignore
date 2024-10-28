@@ -1,0 +1,10 @@
+# Build
+__pycache__
+*.pyc
+
+# Testing
+compose.yaml
+*.log
+
+# OS-specific
+.DS_Store
