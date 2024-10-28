@@ -19,7 +19,7 @@ if [ "$UPGRADE" -eq 1 ]; then
 fi
 
 # Don't touch the venv if upgrading
-if [ -z "$UPGRADE" ]; then
+if [ "$UPGRADE" -eq 1 ]; then
     python -m venv .venv
     source .venv/bin/activate
     pip install uv pre-commit
@@ -31,7 +31,7 @@ if [ -z "$UPGRADE" ]; then
 fi
 
 # Assume a git repo if upgrading
-if [ -z "$UPGRADE" ]; then
+if [ "$UPGRADE" -eq 1 ]; then
     git init
 fi
 
@@ -40,6 +40,6 @@ git add .
 git commit -m "radiac/django-sta{##}rter v{{ cookiecutter._version }}"
 
 # Assume pre-commit already installed if upgrading
-if [ -z "$UPGRADE" ]; then
+if [ "$UPGRADE" -eq 1 ]; then
     pre-commit install
 fi
