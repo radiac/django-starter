@@ -1,0 +1,22 @@
+# Build
+*.pyc
+*.egg-info
+*.log
+__pycache__
+.venv/
+
+# Frontend
+node_modules
+package-lock.json
+
+# Dev
+compose.yaml
+db.sqlite3
+*.log
+.*
+
+# Deployment
+store/
+
+# OS-specific
+.DS_Store
