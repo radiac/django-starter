@@ -21,7 +21,6 @@ from django.urls import URLPattern, URLResolver, include, path
 
 urlpatterns: list[URLResolver | URLPattern] = [
     path("admin/", admin.site.urls),
-    path("test_admin/", admin.site.urls),
 ]
 
 # Serve static files

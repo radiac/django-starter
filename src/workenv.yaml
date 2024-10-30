@@ -1,11 +1,11 @@
 env:
-  COMPOSE_FILE: docker-compose.dev.yml
+  COMPOSE_FILE: compose.dev.yaml
 source:
 - .venv/bin/activate
 commands:
   postgres:
     run:
-    - docker compose up db
+    - docker compose up postgres
   django:
     run:
     - docker compose up django

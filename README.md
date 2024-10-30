@@ -128,7 +128,7 @@ Deployment
 ==========
 
 There is a `compose.live.jinja2` and `d0s-manifest.yaml` for docker0s deployment. It
-expects a standard docer0s Traefik installation with an open internal mail relay.
+expects a standard docker0s Traefik installation with an open internal mail relay.
 
 Alternatively this project can be deployed using any standard method, but note:
 
