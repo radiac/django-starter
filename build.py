@@ -12,6 +12,7 @@ SOURCE_NAME = "Starter"
 COOKIE_NAME = "{{ cookiecutter.project_name }}"
 SOURCE_SLUG = "starter"
 COOKIE_SLUG = "{{ cookiecutter.project_slug }}"
+COOKIE_ROOT = "{{ cookiecutter.root_dir }}"
 
 ignore_patterns = [
     r"/__pycache__/",
@@ -83,7 +84,7 @@ def copy_dir(src_root: Path, dst_root: Path):
 
 def build(src_root: Path, config_root: Path, cookiecutter_root: Path):
     cookiecutter_root.mkdir(exist_ok=False)
-    project_root = cookiecutter_root / COOKIE_SLUG
+    project_root = cookiecutter_root / COOKIE_ROOT
     project_root.mkdir()
     print("Copying config...")
     copy_dir(config_root, cookiecutter_root)
