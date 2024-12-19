@@ -1,5 +1,6 @@
 {
   "project_name": "My Project",
-  "project_slug": "{{ cookiecutter.project_name|lower|replace(' ', '') }}",
-  "_version": "4.2.2"
+  "project_slug": "{{ cookiecutter.project_name|slugify|replace('-', '_') }}",
+  "root_dir": "{{ cookiecutter.project_slug }}",
+  "_version": "4.2.3"
 }

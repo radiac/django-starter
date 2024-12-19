@@ -29,11 +29,18 @@ pip install uv pre-commit
 uvx cookiecutter@latest gh:radiac/django-starter --directory cookiecutter
 ```
 
+You'll be asked three questions:
+
+* Project name: the human-readable site title
+* Project slug: the app name for the site
+* Root dir: this will appear in your current dir as your git project root
+
 This will
 
-* create a virtualenv in `.venv` and install dependencies using
+* create a directory for your root dir and apply the cookiecutter inside it
+* inside that, create a virtualenv in `.venv` and install dependencies using
   [uv](https://github.com/astral-sh/uv)
-* create a git repository and make an initial commit of the base template
+* create a git repository in the root dir and make an initial commit
 * install pre-commit hooks using [pre-commit](https://pre-commit.com/)
 
 You can then use [docker compose](https://docs.docker.com/compose/) for local
@@ -144,8 +151,7 @@ Fork from `main` and make changes in `src/`.
 To build a new cookiecutter:
 
 ```bash
-rm -rf cookiecutter/
-python build.py
+python build.py --delete
 ```
 
 Test the cookiecutter locally using:
