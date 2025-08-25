@@ -17,8 +17,8 @@ Production features:
 * ``compressor`` and ``whitenoise`` for managing static files
 
 
-Quickstart
-==========
+## Quickstart
+
 
 The recommended way to create your project is using
 [uv](https://github.com/astral-sh/uv) and
@@ -66,8 +66,7 @@ we myproject django-shell
 ```
 
 
-Create a project
-================
+## Create a project
 
 If you don't want to use cookiecutter or docker compose, you can do everything manually.
 
@@ -104,8 +103,7 @@ You can then run the Django project as normal:
 ```
 
 
-Using the database
-==================
+## Using the database
 
 The database container has a script to dump from the database:
 
@@ -121,8 +119,8 @@ To load the database from a dump (default `database.dump`):
 docker compose exec postgres /project/docker/postgres/restore.sh
 ```
 
-Testing
-=======
+
+## Testing
 
 The project is configured to use `pytest`:
 
@@ -131,8 +129,7 @@ pytest
 ```
 
 
-Deployment
-==========
+## Deployment
 
 There is a `compose.live.jinja2` and `d0s-manifest.yaml` for docker0s deployment. It
 expects a standard docker0s Traefik installation with an open internal mail relay.
@@ -143,8 +140,7 @@ Alternatively this project can be deployed using any standard method, but note:
 
 
 
-Contributing
-============
+## Contributing
 
 Fork from `main` and make changes in `src/`.
 
@@ -161,9 +157,34 @@ cd /tmp
 uvx cookiecutter path/to/django-starter/cookiecutter
 ```
 
+### Branches
 
-Credits
-=======
+Each `django-V.v` branch has the latest customisations for that version of Django -
+older versions are not updated. Each branch starts from a commit tagged
+`base-django-V.v` and replays customisations. The current version of Django is the main
+branch in the repository.
+
+To make changes to the current project, edit `django-V.v`, using the most recent Django
+version implemented by this project.
+
+To upgrade the base Django:
+
+#. Check out the tag pointing at the last base install, `base-django-A.a`
+#. Bump pinned versions in `src/requirements.in`
+#. Install the latest Django, empty the ``src`` dir, and create a new project with
+   `django-admin.py startproject starter`, then ``mv starter src``
+#. In the new `settings.py`, after `BASE_DIR` add `class Common(Configuration):`
+   and indent the rest of the file
+#. Commit on a new branch, `django-B.b`
+#. Tag as the new `base-django-B.b`
+#. Replay all customisations we made to the last django onto the new django branch with
+   ```
+   git log --oneline django-A.a
+   git cherry-pick <first_customisation>^..<last_customisation>
+   ```
+
+
+## Credits
 
 * ``robots.txt`` from `Neil Clarke
   <https://neil-clarke.com/block-the-bots-that-feed-ai-models-by-scraping-your-website/>`_
