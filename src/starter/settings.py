@@ -17,7 +17,9 @@ from configurations import Configuration
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-STORE_PATH = Path(environ.get("DJANGO_STORE_PATH", BASE_DIR.parent / "store"))
+STORE_PATH = Path(environ.get("DJANGO_STORE_PATH", "local"))
+TMP_PATH = STORE_PATH / "tmp"
+TMP_PATH.mkdir(parents=True, exist_ok=True)
 
 
 class Common(Configuration):
@@ -144,7 +146,8 @@ class Dev(Common):
 
     # E-mail to file
     EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
-    EMAIL_FILE_PATH = STORE_PATH / "tmp" / "emails"
+    EMAIL_FILE_PATH = TMP_PATH / "emails"
+    EMAIL_FILE_PATH.mkdir(parents=True, exist_ok=True)
 
     INSTALLED_APPS = (
         [
@@ -159,6 +162,19 @@ class Dev(Common):
     MIDDLEWARE = Common.MIDDLEWARE + [
         "django_browser_reload.middleware.BrowserReloadMiddleware",
     ]
+
+
+class Local(Dev):
+    """
+    Run outside a docker container with sqlite
+    """
+
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.sqlite3",
+            "NAME": TMP_PATH / "db.sqlite3",
+        }
+    }
 
 
 class Test(Common):

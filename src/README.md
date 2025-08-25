@@ -28,8 +28,7 @@ To load the database from a dump (default `database.dump`):
 docker compose exec postgres /project/docker/postgres/restore.sh
 ```
 
-Testing
--------
+### Testing
 
 The project is configured to use `pytest`:
 
@@ -38,7 +37,7 @@ pytest
 ```
 
 
-Deployment
-==========
+## Deployment
+
 
 * Run ``manage.py compress` to compress assets before `manage.py collectstatic`
