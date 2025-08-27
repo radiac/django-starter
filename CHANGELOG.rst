@@ -4,6 +4,12 @@ Changelog
 Versioning is based on Django: ``<django major>.<django minor>.<starter release>``
 
 
+5.2.0 - 2025-08-28
+------------------
+
+Initial Django 5.2 release
+
+
 4.2.3 - 2024-12-19
 ------------------
 
@@ -33,4 +39,4 @@ Fix:
 4.2.0 - 2024-10-28
 ------------------
 
-Initial public release
+Initial Django 4.2 release

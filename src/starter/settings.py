@@ -76,7 +76,7 @@ class Common(Configuration):
 
     DATABASES = {
         "default": {
-            "ENGINE": "django.db.backends.postgresql_psycopg2",
+            "ENGINE": "django.db.backends.postgresql",
             "NAME": environ.get("POSTGRES_NAME", "postgres"),
             "USER": environ.get("POSTGRES_USER", "postgres"),
             "PASSWORD": environ.get("POSTGRES_PASSWORD", "postgres"),

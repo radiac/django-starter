@@ -9,7 +9,7 @@ django-browser-reload
 django-debug-toolbar
 
 # Core
-django~=4.2.0
+django~=5.2.0
 pillow
 psycopg2-binary
 

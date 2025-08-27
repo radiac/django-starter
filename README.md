@@ -17,8 +17,7 @@ Production features:
 * ``compressor`` and ``whitenoise`` for managing static files
 
 
-## Quickstart
-
+## Quickstart: Standard
 
 The recommended way to create your project is using
 [uv](https://github.com/astral-sh/uv) and
@@ -66,7 +65,37 @@ we myproject django-shell
 ```
 
 
-## Create a project
+## Quickstart: Nanodjango
+
+To use this cookiecutter with `nanodjango convert`
+([see docs](https://nanodjango.readthedocs.io/en/latest/convert.html)):
+
+```bash
+mkdir template
+cd template
+pip install uv pre-commit
+uvx cookiecutter@latest gh:radiac/django-starter --directory cookiecutter
+```
+
+Answer with the following values:
+
+* `project_name`: `{{ project_name }}`
+* `project_slug`: `{{ project_name }}`
+* `root_dir`: `{{ project_directory }}`
+
+Now use it as the template for nanodjango:
+
+```bash
+cd ..
+nanodjango convert <script.py> new_project_dir --name=<project_name> --template=template/<project_name> --delete
+```
+
+You can now delete the `template` directory.
+
+See Standard quickstart for notes on using this new project.
+
+
+## Quickstart: Manual
 
 If you don't want to use cookiecutter or docker compose, you can do everything manually.
 
@@ -139,10 +168,16 @@ Alternatively this project can be deployed using any standard method, but note:
 * Run ``manage.py compress` to compress assets before `manage.py collectstatic`
 
 
-
 ## Contributing
 
-Fork from `main` and make changes in `src/`.
+Fork from the latest Django version branch and make changes in `src/`.
+
+To test your src project in place using sqlite, run it with:
+
+```bash
+cd src
+./manage.py runserver --configuration=Local
+```
 
 To build a new cookiecutter:
 
@@ -166,22 +201,6 @@ branch in the repository.
 
 To make changes to the current project, edit `django-V.v`, using the most recent Django
 version implemented by this project.
-
-To upgrade the base Django:
-
-#. Check out the tag pointing at the last base install, `base-django-A.a`
-#. Bump pinned versions in `src/requirements.in`
-#. Install the latest Django, empty the ``src`` dir, and create a new project with
-   `django-admin.py startproject starter`, then ``mv starter src``
-#. In the new `settings.py`, after `BASE_DIR` add `class Common(Configuration):`
-   and indent the rest of the file
-#. Commit on a new branch, `django-B.b`
-#. Tag as the new `base-django-B.b`
-#. Replay all customisations we made to the last django onto the new django branch with
-   ```
-   git log --oneline django-A.a
-   git cherry-pick <first_customisation>^..<last_customisation>
-   ```
 
 
 ## Credits

@@ -1,5 +1,5 @@
 env:
-  COMPOSE_FILE: compose.dev.yaml
+  COMPOSE_FILE: compose.yaml
 source:
 - .venv/bin/activate
 commands:
